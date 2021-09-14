@@ -1,0 +1,22 @@
+{
+    "name": "boltpay/bolt-magento2-modules-support",
+    "description": "Bolt payment gateway magento2 modules support",
+    "require": {
+        "boltpay/bolt-magento2": "^2.22",
+    },
+    "type": "magento2-module",
+    "version": "1.0.0",
+    "license": "MIT",
+    "autoload": {
+        "files": [ "registration.php" ],
+        "psr-4": {
+            "Bolt\\ModulesSupport\\": ""
+        }
+    },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://repo.magento.com/"
+        }
+    ]
+}

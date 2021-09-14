@@ -1,0 +1,196 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <!-- Amasty_GiftCardAccount -->
+    <event name="before_failed_payment_order_save">
+        <observer name="Bolt_Amasty_GiftCardAccount_Event_BeforeFailedPaymentOrderSave"
+                  module="Amasty_GiftCardAccount"
+                  instance="Bolt\ModulesSupport\Observer\Amasty\GiftCardAccount\BeforeFailedPaymentOrderSaveObserver">
+            <send_class instance="Amasty\GiftCardAccount\Model\GiftCardAccount\Repository" />
+            <send_class instance="Amasty\GiftCardAccount\Model\GiftCardExtension\Order\Repository" />
+        </observer>
+    </event>
+    <event name="replicate_quote_data">
+        <observer name="Bolt_Amasty_GiftCardAccount_Event_ReplicateQuoteData"
+                  module="Amasty_GiftCardAccount"
+                  instance="Bolt\ModulesSupport\Observer\Amasty\GiftCardAccount\ReplicateQuoteDataObserver">
+        </observer>
+    </event>
+    <event name="clear_external_data">
+        <observer name="Bolt_Amasty_GiftCardAccount_Event_ClearExternalData"
+                  module="Amasty_GiftCardAccount"
+                  instance="Bolt\ModulesSupport\Observer\Amasty\GiftCardAccount\ClearExternalDataObserver">
+        </observer>
+    </event>
+    <event name="delete_redundant_discounts">
+        <observer name="Bolt_Amasty_GiftCardAccount_Event_DeleteRedundantDiscounts"
+                  module="Amasty_GiftCardAccount"
+                  instance="Bolt\ModulesSupport\Observer\Amasty\GiftCardAccount\DeleteRedundantDiscountsObserver">
+        </observer>
+    </event>
+    <event name="remove_amasty_giftcard">
+        <observer name="Bolt_Amasty_GiftCardAccount_Event_RemoveAmastyGiftCard"
+                  module="Amasty_GiftCardAccount"
+                  instance="Bolt\ModulesSupport\Observer\Amasty\GiftCardAccount\RemoveAmastyGiftCardObserver">
+            <send_class instance="Amasty\GiftCardAccount\Model\GiftCardAccount\GiftCardAccountManagement" />
+        </observer>
+    </event>
+    <filter name="collect_discounts">
+        <observer name="Bolt_Amasty_GiftCardAccount_Filter_CollectDiscounts"
+                  module="Amasty_GiftCardAccount"
+                  instance="Bolt\ModulesSupport\Observer\Amasty\GiftCardAccount\CollectDiscountsObserver">
+            <send_class instance="Amasty\GiftCardAccount\Api\GiftCardAccountRepositoryInterface" />
+            <send_class instance="Amasty\GiftCardAccount\Api\GiftCardQuoteRepositoryInterface" />
+        </observer>
+    </filter>
+    <filter name="load_giftcard">
+        <observer name="Bolt_Amasty_GiftCardAccount_Filter_LoadGiftcard"
+                  module="Amasty_GiftCardAccount"
+                  instance="Bolt\ModulesSupport\Observer\Amasty\GiftCardAccount\LoadGiftcardObserver">
+            <send_class instance="Amasty\GiftCardAccount\Api\GiftCardAccountRepositoryInterface" />
+        </observer>
+    </filter>
+    <filter name="apply_giftcard">
+        <observer name="Bolt_Amasty_GiftCardAccount_Filter_ApplyGiftcard"
+                  module="Amasty_GiftCardAccount"
+                  instance="Bolt\ModulesSupport\Observer\Amasty\GiftCardAccount\ApplyGiftcardObserver">
+            <send_class instance="Amasty\GiftCardAccount\Model\GiftCardAccount\GiftCardCartProcessor" />
+        </observer>
+    </filter>
+    <filter name="filter_applying_giftcard_code">
+        <observer name="Bolt_Amasty_GiftCardAccount_Filter_FilterApplyingGiftCardCode"
+                  module="Amasty_GiftCardAccount"
+                  instance="Bolt\ModulesSupport\Observer\Amasty\GiftCardAccount\FilterApplyingGiftCardCodeObserver">
+            <send_class instance="Amasty\GiftCardAccount\Model\GiftCardAccount\GiftCardCartProcessor" />
+        </observer>
+    </filter>
+    <filter name="filter_removing_giftcard_code">
+        <observer name="Bolt_Amasty_GiftCardAccount_Filter_FilterRemovingGiftCardCode"
+                  module="Amasty_GiftCardAccount"
+                  instance="Bolt\ModulesSupport\Observer\Amasty\GiftCardAccount\FilterRemovingGiftCardCodeObserver">
+            <send_class instance="Amasty\GiftCardAccount\Model\GiftCardAccount\GiftCardCartProcessor" />
+        </observer>
+    </filter>
+    <!-- Amasty_GiftCardAccount -->
+    
+    <!-- Amasty_GiftCard -->
+    <event name="before_failed_payment_order_save">
+        <observer name="Bolt_Amasty_GiftCard_Event_BeforeFailedPaymentOrderSave"
+                  module="Amasty_GiftCard"
+                  instance="Bolt\ModulesSupport\Observer\Amasty\GiftCard\BeforeFailedPaymentOrderSaveObserver">
+            <check_class instance="Amasty\GiftCard\Model\GiftCardManagement" />
+            <check_class instance="Amasty\GiftCard\Model\AccountFactory" />
+            <check_class instance="Amasty\GiftCard\Model\ResourceModel\Quote\CollectionFactory" />
+            <check_class instance="Amasty\GiftCard\Api\CodeRepositoryInterface" />
+            <check_class instance="Amasty\GiftCard\Api\AccountRepositoryInterface" />
+            <send_class instance="Amasty\GiftCard\Model\ResourceModel\Quote\CollectionFactory" />
+            <send_class instance="Amasty\GiftCard\Api\CodeRepositoryInterface" />
+            <send_class instance="Amasty\GiftCard\Api\AccountRepositoryInterface" />
+        </observer>
+    </event>
+    <event name="replicate_quote_data">
+        <observer name="Bolt_Amasty_GiftCard_Event_ReplicateQuoteData"
+                  module="Amasty_GiftCard"
+                  instance="Bolt\ModulesSupport\Observer\Amasty\GiftCard\ReplicateQuoteDataObserver">
+            <check_class instance="Amasty\GiftCard\Model\GiftCardManagement" />
+            <check_class instance="Amasty\GiftCard\Model\AccountFactory" />
+            <check_class instance="Amasty\GiftCard\Model\ResourceModel\Quote\CollectionFactory" />
+            <check_class instance="Amasty\GiftCard\Api\CodeRepositoryInterface" />
+            <check_class instance="Amasty\GiftCard\Api\AccountRepositoryInterface" />
+        </observer>
+    </event>
+    <event name="clear_external_data">
+        <observer name="Bolt_Amasty_GiftCard_Event_ClearExternalData"
+                  module="Amasty_GiftCard"
+                  instance="Bolt\ModulesSupport\Observer\Amasty\GiftCard\ClearExternalDataObserver">
+            <check_class instance="Amasty\GiftCard\Model\GiftCardManagement" />
+            <check_class instance="Amasty\GiftCard\Model\AccountFactory" />
+            <check_class instance="Amasty\GiftCard\Model\ResourceModel\Quote\CollectionFactory" />
+            <check_class instance="Amasty\GiftCard\Api\CodeRepositoryInterface" />
+            <check_class instance="Amasty\GiftCard\Api\AccountRepositoryInterface" />
+        </observer>
+    </event>
+    <event name="delete_redundant_discounts">
+        <observer name="Bolt_Amasty_GiftCard_Event_DeleteRedundantDiscounts"
+                  module="Amasty_GiftCard"
+                  instance="Bolt\ModulesSupport\Observer\Amasty\GiftCard\DeleteRedundantDiscountsObserver">
+            <check_class instance="Amasty\GiftCard\Model\GiftCardManagement" />
+            <check_class instance="Amasty\GiftCard\Model\AccountFactory" />
+            <check_class instance="Amasty\GiftCard\Model\ResourceModel\Quote\CollectionFactory" />
+            <check_class instance="Amasty\GiftCard\Api\CodeRepositoryInterface" />
+            <check_class instance="Amasty\GiftCard\Api\AccountRepositoryInterface" />
+        </observer>
+    </event>
+    <event name="remove_amasty_giftcard">
+        <observer name="Bolt_Amasty_GiftCard_Event_RemoveAmastyGiftCard"
+                  module="Amasty_GiftCard"
+                  instance="Bolt\ModulesSupport\Observer\Amasty\GiftCard\RemoveAmastyGiftCardObserver">
+            <check_class instance="Amasty\GiftCard\Model\GiftCardManagement" />
+            <check_class instance="Amasty\GiftCard\Model\AccountFactory" />
+            <check_class instance="Amasty\GiftCard\Model\ResourceModel\Quote\CollectionFactory" />
+            <check_class instance="Amasty\GiftCard\Api\CodeRepositoryInterface" />
+            <check_class instance="Amasty\GiftCard\Api\AccountRepositoryInterface" />
+        </observer>
+    </event>
+    <filter name="collect_discounts">
+        <observer name="Bolt_Amasty_GiftCard_Filter_CollectDiscounts"
+                  module="Amasty_GiftCard"
+                  instance="Bolt\ModulesSupport\Observer\Amasty\GiftCard\CollectDiscountsObserver">
+            <check_class instance="Amasty\GiftCard\Model\GiftCardManagement" />
+            <check_class instance="Amasty\GiftCard\Model\AccountFactory" />
+            <check_class instance="Amasty\GiftCard\Model\ResourceModel\Quote\CollectionFactory" />
+            <check_class instance="Amasty\GiftCard\Api\CodeRepositoryInterface" />
+            <check_class instance="Amasty\GiftCard\Api\AccountRepositoryInterface" />
+            <send_class instance="Amasty\GiftCard\Model\ResourceModel\Quote\CollectionFactory" />
+        </observer>
+    </filter>
+    <filter name="load_giftcard">
+        <observer name="Bolt_Amasty_GiftCard_Filter_LoadGiftcard"
+                  module="Amasty_GiftCard"
+                  instance="Bolt\ModulesSupport\Observer\Amasty\GiftCard\LoadGiftcardObserver">
+            <check_class instance="Amasty\GiftCard\Model\GiftCardManagement" />
+            <check_class instance="Amasty\GiftCard\Model\AccountFactory" />
+            <check_class instance="Amasty\GiftCard\Model\ResourceModel\Quote\CollectionFactory" />
+            <check_class instance="Amasty\GiftCard\Api\CodeRepositoryInterface" />
+            <check_class instance="Amasty\GiftCard\Api\AccountRepositoryInterface" />
+            <send_class instance="Amasty\GiftCard\Model\AccountFactory" />
+        </observer>
+    </filter>
+    <filter name="apply_giftcard">
+        <observer name="Bolt_Amasty_GiftCard_Filter_ApplyGiftcard"
+                  module="Amasty_GiftCard"
+                  instance="Bolt\ModulesSupport\Observer\Amasty\GiftCard\ApplyGiftcardObserver">
+            <check_class instance="Amasty\GiftCard\Model\GiftCardManagement" />
+            <check_class instance="Amasty\GiftCard\Model\AccountFactory" />
+            <check_class instance="Amasty\GiftCard\Model\ResourceModel\Quote\CollectionFactory" />
+            <check_class instance="Amasty\GiftCard\Api\CodeRepositoryInterface" />
+            <check_class instance="Amasty\GiftCard\Api\AccountRepositoryInterface" />
+            <send_class instance="Amasty\GiftCard\Model\GiftCardManagementFactory" />
+        </observer>
+    </filter>
+    <filter name="filter_applying_giftcard_code">
+        <observer name="Bolt_Amasty_GiftCard_Filter_FilterApplyingGiftCardCode"
+                  module="Amasty_GiftCard"
+                  instance="Bolt\ModulesSupport\Observer\Amasty\GiftCard\FilterApplyingGiftCardCodeObserver">
+            <check_class instance="Amasty\GiftCard\Model\GiftCardManagement" />
+            <check_class instance="Amasty\GiftCard\Model\AccountFactory" />
+            <check_class instance="Amasty\GiftCard\Model\ResourceModel\Quote\CollectionFactory" />
+            <check_class instance="Amasty\GiftCard\Api\CodeRepositoryInterface" />
+            <check_class instance="Amasty\GiftCard\Api\AccountRepositoryInterface" />
+            <send_class instance="Amasty\GiftCard\Model\GiftCardManagement" />
+        </observer>
+    </filter>
+    <filter name="filter_removing_giftcard_code">
+        <observer name="Bolt_Amasty_GiftCard_Filter_FilterRemovingGiftCardCode"
+                  module="Amasty_GiftCard"
+                  instance="Bolt\ModulesSupport\Observer\Amasty\GiftCard\FilterRemovingGiftCardCodeObserver">
+            <check_class instance="Amasty\GiftCard\Model\GiftCardManagement" />
+            <check_class instance="Amasty\GiftCard\Model\AccountFactory" />
+            <check_class instance="Amasty\GiftCard\Model\ResourceModel\Quote\CollectionFactory" />
+            <check_class instance="Amasty\GiftCard\Api\CodeRepositoryInterface" />
+            <check_class instance="Amasty\GiftCard\Api\AccountRepositoryInterface" />
+            <send_class instance="Amasty\GiftCard\Model\GiftCardManagement" />
+        </observer>
+    </filter>
+    <!-- Amasty_GiftCard -->
+    
+</config>
